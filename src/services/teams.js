@@ -2,6 +2,7 @@ import axios from 'axios';
 import config from '@/config';
 import { successHandler, errorHandler } from './helper';
 
+//API CALLS RELATED TO TEAMS
 export const fetchTeams = (token) => {
     return axios.get( `${config.apiBaseUrl}teams`,
     { 

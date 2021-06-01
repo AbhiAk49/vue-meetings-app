@@ -78,8 +78,10 @@ export default {
                         //console.log(this.teams);
                     })
                     .catch( error => {
-                    this.error = error;
-                    this.status = 'Error'
+                        this.error = error;
+                        this.status = 'Error';
+                        this.$router.push({name:'login'});
+                        //this needs to be corrected
                     });
         },
         checkTeams(){

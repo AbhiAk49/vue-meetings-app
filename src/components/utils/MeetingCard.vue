@@ -29,6 +29,7 @@
 </template>
 
 <script>
+//displaying the meetings card
 import {mapAttendees,setMinutes} from '@/services/helper';
 import {addMemberbyMail,removeSelf} from '@/services/meetings';
 import {getToken} from '@/services/auth';

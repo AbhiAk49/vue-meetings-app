@@ -11,6 +11,7 @@
 </template>
 
 <script>
+//to add the date with the correct format along with the date picker input element
   export default {
     name:'DateSelector',
     data() {

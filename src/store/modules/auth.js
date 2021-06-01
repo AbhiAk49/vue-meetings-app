@@ -2,7 +2,7 @@ import { login,signup } from '@/services/auth';
 const KEY_TOKEN = 'token';
 const KEY_EMAIL = 'email';
 const KEY_USERNAME = 'name';
-
+// after login we receive 3 properties token,email and username ->> storing them in local storage
 const auth = {
     state: {
         token: localStorage.getItem( KEY_TOKEN ) || '',
@@ -43,7 +43,7 @@ const auth = {
                             return email;
                         });
         },
-        signup( /*{ commit },*/ credentials ) {
+        signup( credentials ) {
             return signup( credentials )
                         
         },

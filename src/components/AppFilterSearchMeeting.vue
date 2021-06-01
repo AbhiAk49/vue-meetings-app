@@ -50,7 +50,7 @@ import {OnSearchMeeting} from '@/services/meetings';
 import { getUsers/*,getToken,getUName,getEmail*/ } from '@/services/auth';
 import vue from 'vue';
   export default {
-    name: 'AppAddMeeting',
+    name: 'AppFilterSearchMeetings',
     components:{Alert,MeetingCard},
     data() {
       return {

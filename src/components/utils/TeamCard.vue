@@ -9,7 +9,8 @@
     <hr>
     <div class="d-flex flex-column">
         <b-card-text class="font-weight-bold">Members:</b-card-text>
-        <b-card-text>{{teamMembers.join(", ")}}</b-card-text>
+        <b-card-text v-if="showLess===true" @click="toggleMembersView">{{teamMembers[0]}}, {{teamMembers[1]}}...</b-card-text>
+        <b-card-text v-else @click="toggleMembersView">{{teamMembers.join(", ")}}</b-card-text>
     </div>
     <div class="d-flex justify-content-between my-1">
         <div>
@@ -30,6 +31,7 @@
 </template>
 
 <script>
+//displaying team card
 import {mapAttendees} from '@/services/helper';
 import {leaveTeam,addTeamMemberbyMail} from '@/services/teams';
 import {getToken} from '@/services/auth';
@@ -45,7 +47,8 @@ import {getToken} from '@/services/auth';
             listMembers:[],
             usersMail:'',
             userToken:'',
-            teamMembers:[]
+            teamMembers:[],
+            showLess:true
         }
     },
     methods:{
@@ -54,6 +57,10 @@ import {getToken} from '@/services/auth';
         },
         removeYourself(){
                         leaveTeam(this.team._id,this.userToken);
+        },
+        toggleMembersView(){
+                    this.showLess=!(this.showLess);
+                    //console.log(this.showLess);
         }
     },
     created(){

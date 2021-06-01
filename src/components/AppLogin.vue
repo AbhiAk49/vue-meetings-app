@@ -4,7 +4,7 @@
             <div class="offset-0 offset-md-3 col-12 col-md-6">
                 <h1>Login</h1>
                 <hr />
-                <form name="form" @submit.prevent="login">
+                <form @submit.prevent="login">
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input

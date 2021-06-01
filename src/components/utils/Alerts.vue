@@ -12,6 +12,7 @@
 </template>
 
 <script>
+//alert takes the variant as prop from its parent and  "alert-heading" for the heading of alert
   export default {
     name:'Alert',
     props:{
