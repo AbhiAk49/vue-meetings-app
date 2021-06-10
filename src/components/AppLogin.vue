@@ -130,7 +130,7 @@
                             });
                         });
                 } else {
-                    console.log( 'invalid input values' );
+                    //console.log( 'invalid input values' );
                     Vue.$toast.error(
                                `Invalid Input Values.Please try again`,
                             {

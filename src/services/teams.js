@@ -24,7 +24,7 @@ export const addTeamMemberbyMail = (teamID,email,token) => {
 }
 
 export const leaveTeam = (teamID,token) => {
-    return axios.patch( `${config.apiBaseUrl}meetings/${teamID}?action=remove_member`,null,
+    return axios.patch( `${config.apiBaseUrl}teams/${teamID}?action=remove_member`,null,
     { 
         headers: { 'Authorization': `${token}` }
     }

@@ -23,11 +23,18 @@
         </div>
         <div v-else class="my-1 container-fluid">
             <div v-if="checkTeams()" >
-                    <Alert :variant="'info'">
+                <Alert :variant="'info'">
                     <template v-slot:alert-heading>
                     You are not part of any teams
                     </template>
                 </Alert>
+                <div class="my-1 col-sm-6">
+                    <div class="card border-info team-form" @click="addTeamForm">
+                        <div class="img-wrapper">
+                            <i class="fas fa-plus img"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div v-else class="row justify-content-md-center">
                 <div v-for="team in teams" :key="team._id" class="my-1 col-sm-6">
@@ -80,7 +87,6 @@ export default {
                     .catch( error => {
                         this.error = error;
                         this.status = 'Error';
-                        this.$router.push({name:'login'});
                         //this needs to be corrected
                     });
         },
@@ -97,7 +103,7 @@ export default {
             this.getTeams();
         },
         addTeamForm(){
-            console.log('Add');
+            //console.log('Add');
             this.$router.push({ path:'/teams/add'});
         }
         

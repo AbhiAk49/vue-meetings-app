@@ -143,9 +143,9 @@ export default {
       onSubmit() {
          this.$v.form.$touch();
          if( !this.$v.form.$invalid ){
-            console.log("submitted");
+            //console.log("submitted");
             this.addCurrentUser();
-            console.log(this.form);
+            //console.log(this.form);
             addTeam(this.form,this.token)
               .then(() => {
                 this.$router.push({name:'teams'});
@@ -170,8 +170,8 @@ export default {
         this.form.name = '';
         this.form.description = '';
         this.form.shortName='';
-        this.form.members = '';
-        this.attendee='';
+        this.form.members = [];
+        this.member='';
         // Trick to reset/clear native browser form validation state
         this.show = false;
         this.$nextTick(() => {

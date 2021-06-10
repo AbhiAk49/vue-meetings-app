@@ -206,9 +206,9 @@ export default {
       onSubmit() {
          this.$v.form.$touch();
          if( !this.$v.form.$invalid ){
-            console.log("submitted");
+            //console.log("submitted");
             this.addCurrentUser();
-            console.log(this.form);
+            //console.log(this.form);
             addMeeting(this.form,this.token)
               .then(() => {
                 this.$router.push({name:'home'});
@@ -232,10 +232,12 @@ export default {
         // Reset our form values
         this.form.name = '';
         this.form.description = '';
-        this.form.startTime= '';
-        this.form.endTime= '';
+        this.form.startTime.hours = '';
+        this.form.startTime.minutes= '';
+        this.form.endTime.hours = '';
+        this.form.endTime.minutes= '';
         this.form.date = '';
-        this.form.attendees = '';
+        this.form.attendees = [];
         this.attendee='';
         // Trick to reset/clear native browser form validation state
         this.show = false;

@@ -4,7 +4,7 @@
         <b-card-text><span class="title p-0">{{team.name}}</span></b-card-text>
         <b-card-text class="font-weight-bolder">@{{team.shortName}}</b-card-text>
         <b-card-text class="text-muted">{{team.description}}</b-card-text>
-        <button type="button" class="btn btn-danger btn-sm btn-width" @click="removeYourself" v-on:click="$emit('updateTeams')">Excuse Yourself</button>
+        <button type="button" class="btn btn-danger btn-sm btn-width" @click="removeYourself" >Excuse Yourself</button>
     </div>
     <hr>
     <div class="d-flex flex-column">
@@ -24,7 +24,7 @@
                 <option v-for="user in usersMail" :key="user">{{ user }}</option>
             </datalist>
         </div>
-        <button type="button" class="btn btn-info btn-sm btn-width" @click="addTeamMember" v-on:click="$emit('updateTeams')">Add</button>
+        <button type="button" class="btn btn-info btn-sm btn-width" @click="addTeamMember" >Add</button>
     </div>
         
 </b-card>
@@ -34,7 +34,7 @@
 //displaying team card
 import {mapAttendees} from '@/services/helper';
 import {leaveTeam,addTeamMemberbyMail} from '@/services/teams';
-import {getToken} from '@/services/auth';
+//import {getToken} from '@/services/auth';
   export default {
     name:'TeamCard',
     props:{
@@ -51,12 +51,20 @@ import {getToken} from '@/services/auth';
             showLess:true
         }
     },
+    computed:{  
+        token(){
+            //console.log(this.$store.state.auth.token);
+            return this.$store.state.auth.token;
+        }
+    },
     methods:{
         addTeamMember(){    
-                        addTeamMemberbyMail(this.team._id,this.selectedUser,this.userToken);
+                        addTeamMemberbyMail(this.team._id,this.selectedUser,this.token);
+                        this.$emit('updateTeams');
         },
         removeYourself(){
-                        leaveTeam(this.team._id,this.userToken);
+                        leaveTeam(this.team._id,this.token);
+                        this.$emit('updateTeams');
         },
         toggleMembersView(){
                     this.showLess=!(this.showLess);
@@ -64,7 +72,7 @@ import {getToken} from '@/services/auth';
         }
     },
     created(){
-        this.userToken=getToken();
+        //this.userToken=getToken();
         let listMembers = this.team.members;
         let listUsers = this.users;
         this.usersMail=(mapAttendees(listUsers));

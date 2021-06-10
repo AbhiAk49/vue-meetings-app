@@ -8,7 +8,11 @@ import PageNotFound from '@/components/PageNotFound';
 import AppAddMeeting from '@/components/AppAddMeeting';
 import AppAddTeam from '@/components/AppAddTeam';
 import AppFilterSearchMeeting from '@/components/AppFilterSearchMeeting';
+import store from '@/store';
 
+const meta = {
+    authorize: []
+};
 const router = new Router({
     mode: 'history',
     routes: [
@@ -25,22 +29,26 @@ const router = new Router({
         {
             name: 'home',
             path: '/',
-            component: AppHome
+            component: AppHome,
+            meta
         },
         {
             name: 'meetings',
             path: '/meetings',
             component: AppMeetings,
+            meta,
             children:[
                 {
                     name:'add-meeting',
                     path:'add',
-                    component:AppAddMeeting
+                    component:AppAddMeeting,
+                    meta
                 },
                 {
                     name:'filter-search',
                     path:'',
-                    component:AppFilterSearchMeeting
+                    component:AppFilterSearchMeeting,
+                    meta
                 }
             ]
         },
@@ -48,11 +56,13 @@ const router = new Router({
             name: 'teams',
             path: '/teams',
             component: AppTeams,
+            meta
         },
         {
             name:'add-team',
             path:'/teams/add',
-            component:AppAddTeam
+            component:AppAddTeam,
+            meta
         },
         {
             name: 'page-not-found',
@@ -60,6 +70,19 @@ const router = new Router({
             component: PageNotFound
         }
     ]
+});
+
+
+// Global auth guard
+router.beforeEach(( to, from, next ) => {
+    // Right now, role-based authorization is NOT supported
+    if( to.meta.authorize && !store.getters.isAuthenticated ) {
+        next({
+            name: 'login'
+        });
+    } else {
+        next();
+    }
 });
 
 export default router;

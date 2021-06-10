@@ -32,7 +32,7 @@
 //displaying the meetings card
 import {mapAttendees,setMinutes} from '@/services/helper';
 import {addMemberbyMail,removeSelf} from '@/services/meetings';
-import {getToken} from '@/services/auth';
+//import {getToken} from '@/services/auth';
   export default {
     name:'MeetingCard',
     props:{
@@ -49,17 +49,21 @@ import {getToken} from '@/services/auth';
             userToken:''
         }
     },
+    computed:{  
+        token(){
+            //console.log(this.$store.state.auth.token);
+            return this.$store.state.auth.token;
+        }
+    },
     methods:{
         addMember(){    
-                        addMemberbyMail(this.meeting._id,this.selectedUser,this.userToken);
+                        addMemberbyMail(this.meeting._id,this.selectedUser,this.token);
         },
         removeYourself(){
-                        removeSelf(this.meeting._id,this.userToken);
+                        removeSelf(this.meeting._id,this.token);
         }
     },
     created(){
-
-        this.userToken=getToken();
         let meetingStartTime = `${this.meeting.startTime.hours}:${setMinutes(this.meeting.startTime.minutes)}`;
         let meetingEndTime = `${this.meeting.endTime.hours}:${setMinutes(this.meeting.endTime.minutes)}`;
         this.duration = `${meetingStartTime}-${meetingEndTime}`;

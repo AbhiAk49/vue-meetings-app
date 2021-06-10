@@ -123,6 +123,7 @@ import vue from 'vue';
       },
       Refresh(){
         this.fetchResult();
+        //some refreshing problems - requires extra refresh--similar in app teams
       }
     },
     created() {

@@ -23,7 +23,7 @@
             <div v-if="checkMeetings()" >
                      <Alert :variant="'info'">
                         <template v-slot:alert-heading>
-                        No Meetings for Today
+                        No Meetings for the day
                     </template>
                     </Alert>
             </div>
