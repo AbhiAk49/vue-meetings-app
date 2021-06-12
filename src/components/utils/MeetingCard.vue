@@ -3,7 +3,7 @@
     <div class="d-flex flex-column">
         <b-card-text><span class="title p-0">{{title}}</span><strong class="mx-1">{{duration}}</strong></b-card-text>
         <b-card-text>{{meeting.name}}</b-card-text>
-        <button type="button" class="btn btn-danger btn-sm btn-width" @click="removeYourself" v-on:click="$emit('updateResults')">Excuse Yourself</button>
+        <button type="button" class="btn btn-danger btn-sm btn-width" @click="removeYourself">Excuse Yourself</button>
     </div>
     <hr>
     <div class="d-flex flex-column">
@@ -22,7 +22,7 @@
                 <option v-for="user in usersMail" :key="user">{{ user }}</option>
             </datalist>
         </div>
-        <button type="button" class="btn btn-info btn-sm btn-width" @click="addMember" v-on:click="$emit('updateResults')">Add</button>
+        <button type="button" class="btn btn-info btn-sm btn-width" @click="addMember" >Add</button>
     </div>
         
 </b-card>
@@ -57,10 +57,12 @@ import {addMemberbyMail,removeSelf} from '@/services/meetings';
     },
     methods:{
         addMember(){    
-                        addMemberbyMail(this.meeting._id,this.selectedUser,this.token);
+                        addMemberbyMail(this.meeting._id,this.selectedUser,this.token)
+                            .then( () => { this.$emit('updateResults') })
         },
         removeYourself(){
-                        removeSelf(this.meeting._id,this.token);
+                        removeSelf(this.meeting._id,this.token)
+                            .then( () => { this.$emit('updateResults') })
         }
     },
     created(){

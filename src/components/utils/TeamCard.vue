@@ -59,12 +59,14 @@ import {leaveTeam,addTeamMemberbyMail} from '@/services/teams';
     },
     methods:{
         addTeamMember(){    
-                        addTeamMemberbyMail(this.team._id,this.selectedUser,this.token);
-                        this.$emit('updateTeams');
+                        addTeamMemberbyMail(this.team._id,this.selectedUser,this.token)
+                            .then( () => { this.$emit('updateTeams') })
+                        
         },
         removeYourself(){
-                        leaveTeam(this.team._id,this.token);
-                        this.$emit('updateTeams');
+                        leaveTeam(this.team._id,this.token)
+                            .then( () => { this.$emit('updateTeams') })
+                        
         },
         toggleMembersView(){
                     this.showLess=!(this.showLess);

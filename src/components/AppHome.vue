@@ -73,7 +73,8 @@ export default {
                 name:String,
                 email:String,
                 token:String
-            }
+            },
+            repeatOffset:-1
         }
     },
     computed:{  
@@ -116,9 +117,10 @@ export default {
         },
         getPosition(  startHour, startMinute  ) {
             const minutesFromStartOfDay = startHour * 60 + startMinute;
+            //this.repeatOffset = this.repeatOffset + 1;
             return {
                 top: minutesFromStartOfDay * HEIGHT_HOUR_BOX / 60 + startHour * MARGIN_HOUR_BOXES + 'px',
-                left: '50px',
+                left: 50 + 'px',
                 right: '10px'
             };
         }
@@ -160,14 +162,15 @@ export default {
             .calendar-meeting {
                 position: absolute;
                 background-color: lightgray;
+                text-align: center;
+                overflow-y:scroll
             }
             .meeting-desc{
-                padding:0.2em;
                 font-size:0.8em;
+                color: darkslategray;
             }
             .meeting-name{
-                padding:0.2em;
-                font-size:0.9em;
+                font-size:1em;
                 font-weight: bold;
             }
 </style>

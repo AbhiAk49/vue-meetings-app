@@ -176,12 +176,12 @@ export default {
                 description:{required,minLength:minLength(5),maxLength:maxLength(250)},
                 date: {required},
                 startTime:{
-                    hours:{between:between(0,24),required},
-                    minutes:{between:between(0,60),required}
+                    hours:{between:between(0,23),required},
+                    minutes:{between:between(0,59),required}
                 },
                 endTime:{
-                    hours:{between:between(0,24),required},
-                    minutes:{between:between(0,60),required}
+                    hours:{between:between(0,23),required},
+                    minutes:{between:between(0,59),required}
                 },
               attendees: {minLength:minLength(1),required}
               }
