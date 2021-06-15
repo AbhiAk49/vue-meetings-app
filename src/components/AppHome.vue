@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="calendar-meetings">
-                        <div class="calendar-meeting" v-for="meeting in meetings" :style="[ getHeight( meeting.startTime.hours, meeting.startTime.minutes,meeting.endTime.hours, meeting.endTime.minutes ), getPosition(  meeting.startTime.hours, meeting.startTime.minutes ) ]" :key="meeting.id" >
+                        <div class="calendar-meeting" v-for="meeting in meetings" :style="[ getHeight( meeting.startTime.hours, meeting.startTime.minutes,meeting.endTime.hours, meeting.endTime.minutes ), getPosition(  meeting.startTime.hours, meeting.startTime.minutes,meeting._id ) ]" :key="meeting.id" >
                             <div class="meeting-name">{{meeting.name}}</div>
                             <div class="meeting-desc">{{meeting.description}}</div>
                         </div>
@@ -89,11 +89,12 @@ export default {
                     .then(meetings=>{
                         this.status='Loaded';
                         this.meetings=meetings;
+                        console.log(this.meetings);
                     })
                     .catch( error => {
-                    this.error = error;
-                    this.status = 'Error';
-                    this.$router.push({name:'login'});
+                        this.error = error;
+                        this.status = 'Error';
+                        this.$router.push({name:'login'});
                     });
         },
         onUpdateDate(updateDate){
@@ -115,15 +116,22 @@ export default {
                             height: totalMinutes * HEIGHT_HOUR_BOX / 60 + ( endHour - startHour ) * MARGIN_HOUR_BOXES + 'px'
                         };
         },
-        getPosition(  startHour, startMinute  ) {
+        getPosition(  startHour, startMinute ) {
+            //this.overlapCheck(meetingId);
             const minutesFromStartOfDay = startHour * 60 + startMinute;
-            //this.repeatOffset = this.repeatOffset + 1;
             return {
                 top: minutesFromStartOfDay * HEIGHT_HOUR_BOX / 60 + startHour * MARGIN_HOUR_BOXES + 'px',
                 left: 50 + 'px',
                 right: '10px'
             };
-        }
+        },
+        // overlapCheck(meetingID){
+        //     let checkfor = this.meetings.filter();
+        //     function checkID(meeting) {
+        //         return meeting
+        //     }
+        //     console.log(checkfor);
+        //}
         
     },
     created() {
@@ -163,7 +171,11 @@ export default {
                 position: absolute;
                 background-color: lightgray;
                 text-align: center;
-                overflow-y:scroll
+                overflow-y:scroll;
+                cursor:pointer
+            }
+            .calendar-meeting :hover{
+                color:gray
             }
             .meeting-desc{
                 font-size:0.8em;

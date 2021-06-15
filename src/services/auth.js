@@ -9,7 +9,9 @@ const getUsers = (token)=>{
     return axios.get(
         `${config.apiBaseUrl}users`,
         {   
-            headers: { 'Authorization': `${token}` }
+            headers: { 'Authorization': `${token}`,
+         },
+            withCredentials: true
         }
     ).then( successHandler )
     .catch( errorHandler );
@@ -20,8 +22,9 @@ const login = ( credentials ) => {
                 credentials,
                 {
                     headers: {
-                        'Content-Type': 'application/json'
-                    }
+                        'Content-Type': 'application/json',
+                    },
+                    withCredentials: true
                 }
             )
                 .then( successHandler )
@@ -33,8 +36,9 @@ const signup = ( credentials ) => {
                 credentials,
                 {
                     headers: {
-                        'Content-Type': 'application/json'
-                    }
+                        'Content-Type': 'application/json',
+                    },
+                    withCredentials: true
                 }
             )
                 .then( successHandler )

@@ -69,13 +69,14 @@ import {addMemberbyMail,removeSelf} from '@/services/meetings';
         let meetingStartTime = `${this.meeting.startTime.hours}:${setMinutes(this.meeting.startTime.minutes)}`;
         let meetingEndTime = `${this.meeting.endTime.hours}:${setMinutes(this.meeting.endTime.minutes)}`;
         this.duration = `${meetingStartTime}-${meetingEndTime}`;
-        let meetingDate = new Date(this.meeting.date);
+        let meetingStartDate = new Date(this.meeting.startDate);
+        let meetingEndDate = new Date(this.meeting.endDate);
         let listAttendees = this.meeting.attendees;
         let listUsers = this.users;
         this.usersMail=(mapAttendees(listUsers));
         this.attendeesList= (mapAttendees(listAttendees));
         this.title = `
-        ${meetingDate.getDate()} ${meetingDate.toLocaleString('default', { month: 'long' })} ${meetingDate.getFullYear()}`; 
+        ${meetingStartDate.getDate()} ${meetingStartDate.toLocaleString('default', { month: 'long' })} ${meetingStartDate.getFullYear()} - ${meetingEndDate.getDate()} ${meetingEndDate.toLocaleString('default', { month: 'long' })} ${meetingEndDate.getFullYear()}`; 
     }
   }
 </script>

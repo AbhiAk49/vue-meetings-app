@@ -38,14 +38,26 @@
                   </div>
                 </div>
             </b-form-group>
-            <b-form-group id="meeting-datepicker" label="Date" label-for="meeting-date" >
-                <b-form-datepicker id="meeting-date" v-model="form.date" locale="en" calendar-width="100%"
-                @blur="$v.form.date.$touch()" 
-                :class="{'is-invalid': shouldAppendErrorClass($v.form.date),
-                        'is-valid': shouldAppendValidClass($v.form.date)
+            <b-form-group id="meeting-startDatepicker" label="Start Date" label-for="meeting-startDate" >
+                <b-form-datepicker id="meeting-startDate" v-model="form.startDate" locale="en" calendar-width="100%"
+                @blur="$v.form.startDate.$touch()" 
+                :class="{'is-invalid': shouldAppendErrorClass($v.form.startDate),
+                        'is-valid': shouldAppendValidClass($v.form.startDate)
                 }"></b-form-datepicker>
-              <div v-if="$v.form.date.$error">
-                  <div v-if="!$v.form.date.required" class="error-message">
+              <div v-if="$v.form.startDate.$error">
+                  <div v-if="!$v.startDate.required" class="error-message">
+                      <small>Date is required</small>
+                  </div>
+              </div>
+            </b-form-group>
+            <b-form-group id="meeting-endDatepicker" label="End Date" label-for="meeting-endDate" >
+                <b-form-datepicker id="meeting-endDate" v-model="form.endDate" locale="en" calendar-width="100%"
+                @blur="$v.form.endDate.$touch()" 
+                :class="{'is-invalid': shouldAppendErrorClass($v.form.endDate),
+                        'is-valid': shouldAppendValidClass($v.form.endDate)
+                }"></b-form-datepicker>
+              <div v-if="$v.form.endDate.$error">
+                  <div v-if="!$v.endDate.required" class="error-message">
                       <small>Date is required</small>
                   </div>
               </div>
@@ -147,7 +159,8 @@ export default {
         form: {
           name:'',
           description:'',
-          date: '',
+          startDate: '',
+          endDate: '',
           startTime:{
               hours:'',
               minutes:''
@@ -174,7 +187,8 @@ export default {
             form: {
                 name:{required,minLength:minLength(5),maxLength:maxLength(50)},
                 description:{required,minLength:minLength(5),maxLength:maxLength(250)},
-                date: {required},
+                startDate: {required},
+                endDate: {required},
                 startTime:{
                     hours:{between:between(0,23),required},
                     minutes:{between:between(0,59),required}

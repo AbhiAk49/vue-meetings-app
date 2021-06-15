@@ -6,7 +6,8 @@ import { successHandler, errorHandler } from './helper';
 export const fetchTeams = (token) => {
     return axios.get( `${config.apiBaseUrl}teams`,
     { 
-        headers: { 'Authorization': `${token}` }
+        headers: { 'Authorization': `${token}` },
+        withCredentials: true
     }
      )
     .then( successHandler )
@@ -14,9 +15,10 @@ export const fetchTeams = (token) => {
 }
 
 export const addTeamMemberbyMail = (teamID,email,token) => {
-    return axios.patch( `${config.apiBaseUrl}teams/${teamID}?action=add_member&email=${email}`,null,
+    return axios.patch( `${config.apiBaseUrl}teams/${teamID}?action=add_member&userEmai=${email}`,null,
     { 
-        headers: { 'Authorization': `${token}` }
+        headers: { 'Authorization': `${token}` },
+        withCredentials: true
     }
      )
     .then( successHandler )
@@ -24,9 +26,10 @@ export const addTeamMemberbyMail = (teamID,email,token) => {
 }
 
 export const leaveTeam = (teamID,token) => {
-    return axios.patch( `${config.apiBaseUrl}teams/${teamID}?action=remove_member`,null,
+    return axios.patch( `${config.apiBaseUrl}teams/${teamID}?action=leave_team`,null,
     { 
-        headers: { 'Authorization': `${token}` }
+        headers: { 'Authorization': `${token}` },
+        withCredentials: true
     }
      )
     .then( successHandler )
@@ -41,7 +44,8 @@ export const addTeam = ( team,token ) => {
                     headers: {
                         'Authorization': `${token}`,
                         'Content-Type': 'application/json'
-                    }
+                    },
+                    withCredentials: true
                 }
             )
                 .then( successHandler )
