@@ -7,7 +7,7 @@
         <button type="button" class="btn btn-danger btn-sm btn-width" @click="removeYourself" >Excuse Yourself</button>
     </div>
     <hr>
-    <div class="d-flex flex-column">
+    <div class="d-flex flex-column members-list">
         <b-card-text class="font-weight-bold">Members:</b-card-text>
         <b-card-text v-if="showLess===true" @click="toggleMembersView">{{teamMembers[0]}}, {{teamMembers[1]}}...</b-card-text>
         <b-card-text v-else @click="toggleMembersView">{{teamMembers.join(", ")}}</b-card-text>
@@ -92,5 +92,8 @@ import {leaveTeam,addTeamMemberbyMail} from '@/services/teams';
     font-weight: bold;
     font-size: 1.2em;
     padding: 0.7em;
+}
+.members-list{
+    cursor:pointer
 }
 </style>

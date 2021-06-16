@@ -10,8 +10,7 @@ const getUsers = (token)=>{
         `${config.apiBaseUrl}users`,
         {   
             headers: { 'Authorization': `${token}`,
-         },
-            withCredentials: true
+         }
         }
     ).then( successHandler )
     .catch( errorHandler );
@@ -23,8 +22,7 @@ const login = ( credentials ) => {
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                    },
-                    withCredentials: true
+                    }
                 }
             )
                 .then( successHandler )
@@ -37,8 +35,7 @@ const signup = ( credentials ) => {
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                    },
-                    withCredentials: true
+                    }
                 }
             )
                 .then( successHandler )

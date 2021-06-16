@@ -50,13 +50,9 @@
 <script>
 const HEIGHT_HOUR_BOX = 50, MARGIN_HOUR_BOXES = 5;
 import DateSelector from '@/components/utils/DateSelector';
-//import { getEmail,getToken,getUName } from '@/services/auth';
 import Alert from '@/components/utils/Alerts';
 import {fetchCalendarMeetings} from '@/services/meetings';
-/**
- * 2021-06-28-Meet @ this!
- * 
- */
+
 export default {
     name: 'AppHome',
     components:{
@@ -89,7 +85,7 @@ export default {
                     .then(meetings=>{
                         this.status='Loaded';
                         this.meetings=meetings;
-                        console.log(this.meetings);
+                        //console.log(this.meetings);
                     })
                     .catch( error => {
                         this.error = error;

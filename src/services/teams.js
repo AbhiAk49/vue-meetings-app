@@ -6,8 +6,8 @@ import { successHandler, errorHandler } from './helper';
 export const fetchTeams = (token) => {
     return axios.get( `${config.apiBaseUrl}teams`,
     { 
-        headers: { 'Authorization': `${token}` },
-        withCredentials: true
+        headers: { 'Authorization': `${token}` }
+       
     }
      )
     .then( successHandler )
@@ -15,10 +15,10 @@ export const fetchTeams = (token) => {
 }
 
 export const addTeamMemberbyMail = (teamID,email,token) => {
-    return axios.patch( `${config.apiBaseUrl}teams/${teamID}?action=add_member&userEmai=${email}`,null,
+    return axios.patch( `${config.apiBaseUrl}teams/${teamID}?action=add_member&userEmail=${email}`,null,
     { 
-        headers: { 'Authorization': `${token}` },
-        withCredentials: true
+        headers: { 'Authorization': `${token}` }
+        
     }
      )
     .then( successHandler )
@@ -28,8 +28,8 @@ export const addTeamMemberbyMail = (teamID,email,token) => {
 export const leaveTeam = (teamID,token) => {
     return axios.patch( `${config.apiBaseUrl}teams/${teamID}?action=leave_team`,null,
     { 
-        headers: { 'Authorization': `${token}` },
-        withCredentials: true
+        headers: { 'Authorization': `${token}` }
+       
     }
      )
     .then( successHandler )
@@ -44,8 +44,7 @@ export const addTeam = ( team,token ) => {
                     headers: {
                         'Authorization': `${token}`,
                         'Content-Type': 'application/json'
-                    },
-                    withCredentials: true
+                    }
                 }
             )
                 .then( successHandler )
